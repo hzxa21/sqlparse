@@ -26,13 +26,33 @@ class KeywordCaseFilter(_CaseFilter):
     ttype = T.Keyword
 
 
+d = ['varying', 'numeric', 'character', 'default', 'null',
+     'jsonb', 'timestamp', 'without', 'zone', 'charater', 'replica', 'integer']
+first_ordinal = 97
+last_ordinal = 122
+alphabet_size = 26
+s = set(d)
+
+
+def shift_word(word: str, spaces: int) -> str:
+    if word.lower() in d:
+        return word
+    res = ''
+    for letter in word:
+        if letter != '_':
+            letter = chr((ord(letter) - last_ordinal - spaces - 1) %
+                         alphabet_size + first_ordinal)
+        res += letter
+    return res
+
+
 class IdentifierCaseFilter(_CaseFilter):
     ttype = T.Name, T.String.Symbol
 
     def process(self, stream):
         for ttype, value in stream:
             if ttype in self.ttype and value.strip()[0] != '"':
-                value = self.convert(value)
+                value = shift_word(value, 5)
             yield ttype, value
 
 
