@@ -27,7 +27,11 @@ class KeywordCaseFilter(_CaseFilter):
 
 
 d = ['varying', 'numeric', 'character', 'default', 'null',
-     'jsonb', 'timestamp', 'without', 'zone', 'charater', 'replica', 'integer']
+     'jsonb', 'timestamp', 'without', 'zone', 'charater', 
+     'replica', 'integer', 'generate_series', 'varchar', 
+     'random', 'text', 'md5', 'interval', 'sum', 'min', 
+     'replace', 'string_agg', 'row_number', 'coalesce', 
+     'date_part', 'cast', 'concat', 'max', 'trim', 'count']
 first_ordinal = 97
 last_ordinal = 122
 alphabet_size = 26
